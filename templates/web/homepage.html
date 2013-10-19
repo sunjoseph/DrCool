@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags i18n future staticfiles blog_tags keyword_tags %}
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block main %}
+<div class="bannercontainer" >
+    <div class="banner" >
+        {% blog_recent_posts category="latest post" as recent_posts %}
+        {% if recent_posts %}                                              
+        <ul>
+        {% for item in recent_posts %}
+            <li>
+                <img src="{{ MEDIA_URL }}{% thumbnail item.featured_image 940 400 %}" style="max-width: 100%;" />          
+                <div class="caption sfl carousel-caption" data-x="0" data-y="228" data-speed="1000" data-start="1000" data-easing="easeOutBack" style="background: none; padding-left: 0;">
+                    <p class="big title-post"><a href="{{ item.get_absolute_url }}">{{ item.title |striptags |truncatewords:17 }}</a></p>
+                </div>
+                <div class="caption sfb carousel-caption" data-x="0" data-y="281" data-speed="1000" data-start="1000" data-easing="easeInBack" style="background: none; padding-left: 0; width: 100%;">
+                    <p class="small trans">{{ item.description_from_content | striptags |truncatechars:250 }}</p>
+                </div>         
+            </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="tp-bannertimer"></div>
+    </div>
+</div>
+<div class="row-fluid main-block">        
+    <!-- MAIN CONTENT AREA: REDESIGN CUSTOM - HERO BLOCK 1 (TEXT BLOCK)] -->
+    <div class="home-block introduction">
+        {% blog_recent_posts category="introduction" as recent_posts %}            
+        {% if recent_posts %} 
+        {% for item in recent_posts %}
+            {{ item.content | safe }}
+        {% endfor %}
+        {% endif %}
+    </div>      
+</div>
+<hr>
+<!-- MAIN CONTENT AREA: bizstrap CUSTOM - PORTFOLIO GRID BLOCK (ORIGINALLY DESIGNED FOR HOME PAGE) -->
+<div class="portfolio-grid-1 main-block">
+    <div class="title-wrapper">
+        <h2>Check out our latest product lines</h2>
+        <a class="all" href={{ SITE_ROOT }}"/appliances">Show all products&nbsp;&raquo;</a>
+    </div>
+    <div class="clear-both"></div>
+    <div class="row-fluid portfolio-grid-1">
+        {% blog_recent_posts limit=4 category="featured product lines" as recent_posts %}
+        {% if recent_posts %}
+        {% for item in recent_posts %}
+        <div class="span3 small hp-wrapper">            
+            {% if settings.BLOG_USE_FEATURED_IMAGE and item.featured_image %}
+            <a class="fancy" href="{{ MEDIA_URL }}{% thumbnail item.featured_image 850 550 %}"> 
+                <img alt="" class="hover-shade" src="{{ STATIC_URL }}assets/img/220_1_hover.png" />       
+            </a>
+            {% else %}
+            <a class="fancy" href="{{ STATIC_URL }}assets/img/xmark.png"> 
+                <img alt="" class="hover-shade" src="{{ STATIC_URL }}assets/img/220_1_hover.png" />       
+            </a>
+            {% endif %}
+            {% if settings.BLOG_USE_FEATURED_IMAGE and item.featured_image %}
+            <a class="top-link" href="#"><img src="{{ MEDIA_URL }}{% thumbnail item.featured_image 220 160 %}" class="img-rounded"></a>
+            {% else %}
+            <a class="top-link" href="#"><img src="{{ STATIC_URL }}assets/img/xmark.png" class="img-rounded"></a>
+            {% endif %}
+            <div class="bottom-block">
+                <a href="{{ item.get_absolute_url }}" class="dot">{{ item.title }}</a>
+                <p>{{ item.description_from_content | striptags |truncatechars:50 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}                
+    </div>
+    </div>
+</div>
+<hr>
+<!-- MAIN CONTENT AREA: bizstrap CUSTOM - HORIZONTAL TESTIMONIAL BLOCK -->
+<div class="main-block testimonials">
+    <div class="title-wrapper">
+        <h2>Testimonials</h2><a href={{SITE_ROOT}}"/testimonials" class="all">Show all Client Testimonials&nbsp;&raquo;</a>
+    </div>
+    <div class="clear-both"></div>
+    <div class="row show-grid">
+        <div class="span12">
+            {% blog_recent_posts category="testimonial" limit=1 as recent_posts %}            
+            {% if recent_posts %} 
+            <div class="testimonials-block">
+                <div class="quote"></div>
+                {% for item in recent_posts %}
+                    {{ item.content | safe }}
+                {% endfor %}
+            </div>
+            {% endif %}            
+        </div>
+    </div>
+</div>
+</div>           
+</div>
+{% endblock %}

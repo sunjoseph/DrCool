@@ -1,0 +1,5 @@
+django
+Mezzanine==1.4.5
+south
+pil
+requests

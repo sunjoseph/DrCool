@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles blog_tags keyword_tags %}
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+<!--  revolution slider plugin : begin -->        
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/rs-responsive.css" media="screen" />
+<!--  revolution slider plugin : end -->
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/isotope.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/color_scheme.css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="{{STATIC_URL}}assets/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome-ie7.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/flexslider.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/bootstrap.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/custom.css" />
+<link rel="stylesheet/less" type="text/css" href="{{STATIC_URL}}assets/css/styles.less" />
+{% endcompress %}
+<!-- {% compress js %}
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/bootstrap-extras.js" %}"></script>
+{% block extra_js %}{% endblock %}
+{% endcompress %} -->
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<![endif]-->
+{% block extra_head %}{% endblock %}
+</head>
+<body id="{% block body_id %}body{% endblock %}">
+	<!-- THE LINE AT THE VERY TOP OF THE PAGE -->
+	<div class="top_line"></div>
+	<!-- HEADER AREA -->
+	<header>
+	    <div class="container" id="wrapHeader">
+	        <div class="row-fluid">
+	        <!-- HEADER: LOGO AREA -->
+	            <div class="span5">
+	                <a id="logo" href={{ SITE_ROOT }}"/" title="Dr.Cool"></a>
+	            </div>    
+	            <div class="span7">   
+                    <div class="pull-right">
+                        <!-- HEADER: PHONE NUMBER -->  
+                        <div class="head_phone"><i class="icon-hand-right icon-large"></i> <a class="call-us" href="tel:3406939071" data-toggle="tooltip" data-placement="right" title="Call us today for more information">(340) 693-9071</a></div> 
+                        <!-- END HEADER: PHONE NUMBER -->  
+                        <!-- HEADER: SOCIALS --> 
+                        <ul class="socials unstyled">
+                            <li><a class="facebook social-tooltip" href="https://www.facebook.com/DrCoolBuzz" target="_blank" data-toggle="tooltip" title="Facebook" data-placement="left"></a></li>
+                            <li><a class="twitter social-tooltip" href="https://www.twitter.com/DrCoolBuzz" target="_blank" data-toggle="tooltip" title="Twitter" data-placement="right"></a></li>                        
+                        </ul>
+                        <!-- END HEADER: SOCIALS --> 
+                        <!-- FORM SEARCH --> 
+                        <div>{% search_form "all" %}</div>
+                        <!-- END FORM SEARCH --> 
+                    </div>
+	            </div>                            
+	        </div>
+	    </div>
+	    <!-- HEADER: PRIMARY SITE NAVIGATION -->    
+	    <div class="container">
+	        <div class="navbar">
+	            <div class="navbar-inner">
+	                <div class="container">
+                        {% page_menu "pages/menus/tree.html" %}
+                    </div>
+	            </div>
+	        </div>
+	    </div>
+	</header>
+	<!-- END HEADER AREA -->
+    <!-- BEGIN MAIN CONTENT -->
+	<section class="container" id="mainSection">
+		{% nevercache %}
+		{% for message in messages %}
+		<div class="alert alert-{{ message.tags }}" data-alert="alert">
+		    <a class="close" href="#" onclick="$(this).parent().fadeOut('fast'); return false;">×</a>{{ message }}
+		</div>
+		{% endfor %}
+		{% endnevercache %}
+		<div class="row-fluid">
+            {% block main %}{% endblock %}
+			<hr>
+            <!-- MAIN CONTENT AREA: bizstrap CUSTOM - CLIENTS LOGO BAR -->
+            <div class="main-block clients">
+                <div class="row-fluid show-grid">
+                    <div class="span12">
+                        <div class="image_carousel">
+                            {% blog_recent_posts category="brands appliance" as recent_posts %}
+                            {% if recent_posts %}
+                            {% for recent_post in recent_posts %}
+                                <h2 class="title-wrapper">{{ recent_post.title }}</h2>   
+                                <div class="brand-gallery clearfix">{{ recent_post.content|safe }}</div>  
+                            {% endfor %} 
+                            {% endif %}                                                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</section>
+    <!-- END MAIN CONTENT -->
+    <!-- BEGIN FOOTER -->
+	<footer id="footer">
+		<div class="footer-top"></div>
+		<div class="footer-wrapper">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                     <!-- FOOTER: LOGO -->
+                    <div class="span4">
+                    	{% blog_recent_posts category="contact us" as recent_posts %}
+		                {% if recent_posts %}
+		                {% for recent_post in recent_posts %}
+		                    <h4 class="center-title">{{ recent_post.title }}</h4>		                    
+		                    <!-- FOOTER: ADDRESS -->
+		                    <address class="address">
+		                    <p> {{ recent_post.content|safe }} </p>                            
+                        	</address>		                    
+		                {% endfor %} 
+		                {% endif %}                        
+                    </div>
+                    <!-- FOOTER: ABOUT US -->
+                    <div class="span4 footer-center">
+			            {% blog_recent_posts category="about us" as recent_posts %}
+		                {% if recent_posts %}
+		                {% for recent_post in recent_posts %}
+		                    <h4 class="center-title">{{ recent_post.title }}</h4>		                    
+		                    <p> {{ recent_post.content | safe }} </p>	                   
+		                {% endfor %} 
+		                {% endif %}
+                    </div>
+                     <!-- FOOTER: NAVIGATION LINKS -->
+                    <div class="span4">
+                        <h4 class="center-title">Navigate</h4>
+                        <div class="nav-footer">{% page_menu "pages/menus/footer_tree.html" %}</div>
+                    </div>                        
+                </div>
+            </div>
+        </div>	
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                 <!-- FOOTER: COPYRIGHT TEXT -->
+                    <p class="pull-left parent-company">Visit Dr. Cool's parent company at &nbsp;<a href="http://www.usfacilities.com">http://www.usfacilities.com</a></p>
+                    <p class="pull-right" id="copyRight"> Dr.Cool &copy; <span id="year"> </span> All Rights Reserved</p>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>	        
+	</footer>	
+    <!-- END FOOTER -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/less-1.4.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.carouFredSel-5.6.4-packed.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/bootstrap.js"></script>	
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/custom.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.isotope.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.fancybox.pack.js?v=2.1.0"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/revolution.custom.js"></script>      
+    <!-- ENABLE EDIT CONTENT IF USER LOGGED IN -->
+    {% include "includes/footer_scripts.html" %}
+</body>
+</html>

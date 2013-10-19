@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<!-- <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title> -->
+<!--  SEO STUFF START HERE -->
+<meta name="robots" content="follow, index" />
+<!--  SEO STUFF END -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--  revolution slider plugin : begin -->        
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/rs-responsive.css" media="screen" />
+<!--  revolution slider plugin : end -->
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/isotope.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/color_scheme.css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome-ie7.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/flexslider.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/bootstrap.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/custom.css" />
+<link rel="stylesheet/less" type="text/css" href="{{STATIC_URL}}assets/css/styles.less" />
+</head>
+<body>
+    <!-- THE LINE AT THE VERY TOP OF THE PAGE -->
+    <div class="top_line"></div>
+    <!-- HEADER AREA -->
+    <header>
+        <div class="container">
+            <div class="row-fluid">
+            <!-- HEADER: LOGO AREA -->
+                <div class="span4 logo">
+                    <a class="logo" href={{ SITE_ROOT }}"/">
+                        <img id="logo" alt="logo" title="bizstrap" src="{{ STATIC_URL }}assets/img/drcoollogo.png">
+                    </a>
+                </div>    
+                <div class="span4 offset4">
+                <!-- HEADER: PHONE NUMBER -->
+                    <p class="head_phone"><a href="tel:3406939071">(340) 693-9071</a></p>
+                </div>            
+            <!-- HEADER: SOCIAL ICONS -->
+                <ul class="socials unstyled">
+                    <li><a class="flickr" href="javascript:void(0)"></a></li>
+                    <li><a class="twitter" href="javascript:void(0)"></a></li>
+                    <li><a class="facebook" href="javascript:void(0)"></a></li>
+                    <li><a class="youtube" href="javascript:void(0)"></a></li>
+                    <li><a class="dribbble" href="javascript:void(0)"></a></li>
+                    <li><a class="pinterest" href="javascript:void(0)"></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- HEADER: PRIMARY SITE NAVIGATION -->    
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <div class="buttons-container">
+                        </div>
+                        <div class="nav-collapse">
+                            <ul class="nav nav-pills">
+                                <li class="single"><a href={{ SITE_ROOT }}"/">HOME
+                                    </a>
+                                </li>
+                                <li class="single"><a href={{ SITE_ROOT }}"/about-us">ABOUT US
+                                    </a>
+                                </li>
+                                <li class="single"><a href={{ SITE_ROOT }}"/services">SERVICES
+                                    </a>
+                                </li>                               
+                                <li class="single"><a href={{ SITE_ROOT }}"/appliances">APPLIANCES
+                                    </a>
+                                </li>
+                                <li class="single"><a href={{ SITE_ROOT }}"/testimonials">TESTIMONIALS</a>
+                                </li>
+                                <li class="single"><a href={{ SITE_ROOT }}"/contact">CONTACT US</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <div class="container"> 
+            {% block maincontent %}{% endblock %}
+        </div>        
+        <div class="container">              
+            <hr>
+            <!-- MAIN CONTENT AREA: bizstrap CUSTOM - CLIENTS LOGO BAR -->
+            <div class="main-block clients">
+                <div class="title-wrapper">
+                    <h2>Our Appliance Brands</h2>
+                </div>
+                <div class="row-fluid show-grid">
+                    <div class="span12">
+                        <div class="brand-gallery clearfix">                            
+                            <div class="item-logo">
+                                <a href="http://www.wolf.org/wolves/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-wolf.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.thermador.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-thermador.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.mitsubishielectric.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-mitsubishi.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.subzero-wolf.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-subzero.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.miele.com/international/enint/home.htm"><img alt="" src="{{ STATIC_URL }}assets/img/logo-miele.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.electrolux.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-electrolux.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.bosch.com/worldsite_startpage/en/default.aspx"><img alt="" src="{{ STATIC_URL }}assets/img/logo-bosch.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.brevilleusa.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-breville.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.gaggenau.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-gaggenau.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.liebherr.com/en-GB/default_lh.wfw"><img alt="" src="{{ STATIC_URL }}assets/img/logo-liebherr.jpg" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.scotsman.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-scotsman.gif" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.smeg.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-smeg.png" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.uline.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-uline.jpg" /></a>
+                            </div>
+                            <div class="item-logo">
+                                <a href="http://www.vikingrange.com/consumer/index.jsp"><img alt="" src="{{ STATIC_URL }}assets/img/logo-viking.jpg" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <!-- MAIN CONTENT AREA: bizstrap CUSTOM - RECENT TWEETS BAR -->
+        {% ifinstalled mezzanine.twitter %}
+        {% include "twitter/tweets.html" %}
+        {% endifinstalled %}                
+    </div>        
+    <!-- FOOTER STARTS HERE -->
+    <footer id="footer">
+        <div class="footer-top"></div>
+        <div class="footer-wrapper">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                     <!-- FOOTER: LOGO -->
+                    <div class="span4">
+                        <h4 class="center-title">Contact Us</h4>
+                        <!-- <img alt="" class="footer-logo" src="{{ STATIC_URL }}assets/img/grey_logo.png" /> -->
+                    <!-- FOOTER: ADDRESS -->
+                        <address class="address">
+                            <p><i class="icon-map-marker icon-large"></i>Suite 1, Palm Plaza (just over Jacob’s ladder), St. John, VI 00830</p> 
+                            <p><i class="icon-phone icon-large"></i>Phone: (340) 693-9071</p>
+                            <p><i class="icon-time icon-large"></i><span>Office hours: M-F: 8-5 with 24-hour Emergency on-call Service</span></p>
+                            <p><i class="icon-hand-right icon-large"></i>Showroom hours: M-F: 8-5; SAT: By Appointment; Closed Sunday</p>
+                            <p><i class="icon-user icon-large"></i> Email: <a href="mailto:sales@drcool.com" class="mail-us">sales@drcool.com</a></p>
+                        </address>
+                    </div>
+                    <!-- FOOTER: ABOUT US -->
+                    <div class="span4 footer-center">
+                        <h4 class="center-title">About Us</h4>
+                        <p>We offer quality Energy Star rated appliances, including Sub Zero, Wolf, Miele, Thermador, Gaggenau, Bosch &nbsp; Electrolux. Come visit our showroom for details in Palm Plaza where you can test your cooking skills on one of our several live kitchens or browse our selection of fine appliances. Every Dr. Cool appliance comes with a full two-year warranty the best in the islands. We carry the very best appliances to fit every lifestyle.</p>
+                    </div>
+                     <!-- FOOTER: NAVIGATION LINKS -->
+                    <div class="span4 footer-right">
+                        <h4 class="center-title">Navigate</h4>
+                        <ul class="footer-navigate">
+                            <li>
+                                <a href={{ SITE_ROOT }}"/">Home</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/about-us">about us</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/services">services</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/appliances">appliances</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/testimonials">testimonials</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/contact">contact us</a>
+                            </li>
+                        </ul>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                 <!-- FOOTER: COPYRIGHT TEXT -->
+                    <p class="left parent-company">Visit Dr. Cool's parent company at &nbsp;<a href="http://www.usfacilities.com">http://www.usfacilities.com</a></p>
+                    <p class="right"> <span  class="white" id="goTop">Dr.Cool</span> &copy; 2013 All Rights Reserved</p>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    <!-- Placed at the end of the document so the pages load faster -->    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.carouFredSel-5.6.4.js"></script>
+    <script type="text/javascript" src="https://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>    
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/custom.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.isotope.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.fancybox.pack.js?v=2.1.0"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/revolution.custom.js"></script>    
+    
+</body>
+</html>

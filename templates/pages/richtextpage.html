@@ -1,0 +1,40 @@
+{% extends "pages/page.html" %}
+
+{% load pages_tags mezzanine_tags i18n future staticfiles blog_tags keyword_tags %}
+
+{% block main %}{{ block.super }}
+
+{% editable page.richtextpage.content %}
+{{ page.richtextpage.content|richtext_filter|safe }}   
+{% endeditable %}
+
+{% if page.richtextpage.slug = "appliances" %}
+	<div class="row-fluid portfolio-grid-1">
+	{% blog_recent_posts limit=4 category="featured product lines" as recent_posts %}
+	{% if recent_posts %}
+	{% for item in recent_posts %}	
+		<div class="span3 small hp-wrapper">            
+		    {% if settings.BLOG_USE_FEATURED_IMAGE and item.featured_image %}
+		    <a class="fancy" href="{{ MEDIA_URL }}{% thumbnail item.featured_image 850 550 %}"> 
+		        <img alt="" class="hover-shade" src="{{ STATIC_URL }}assets/img/220_arrow_hover.png" />       
+		    </a>
+		    {% else %}
+		    <a class="fancy" href="{{ STATIC_URL }}assets/img/xmark.png"> 
+		        <img alt="" class="hover-shade" src="{{ STATIC_URL }}assets/img/220_arrow_hover.png" />       
+		    </a>
+		    {% endif %}
+		    {% if settings.BLOG_USE_FEATURED_IMAGE and item.featured_image %}
+		    <a class="top-link" href="#"><img src="{{ MEDIA_URL }}{% thumbnail item.featured_image 220 160 %}" class="img-rounded"></a>
+		    {% else %}
+		    <a class="top-link" href="#"><img src="{{ STATIC_URL }}assets/img/xmark.png" class="img-rounded"></a>
+		    {% endif %}
+		    <div class="bottom-block content-appliance">
+		        <a href="#"><a href="{{ item.get_absolute_url }}" class="dot">{{ item.title }}</a></a>
+		        <p>{{ item.description_from_content | striptags |truncatechars:50 }}</p>
+		    </div>
+		</div>
+	{% endfor %}
+	{% endif %} 
+	</div>
+{% endif %} 
+{% endblock %}

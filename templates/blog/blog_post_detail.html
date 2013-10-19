@@ -1,0 +1,93 @@
+{% extends "blog/blog_post_list.html" %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+
+{% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for blog_post as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ blog_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{% editable blog_post.title %}{{ blog_post.title }}{% endeditable %}
+{% endblock %}
+
+<!-- {% block breadcrumb_menu %}
+{{ block.super }}
+<li class="active">{{ blog_post.title }}</li>
+{% endblock %} -->
+
+{% block main %}
+<div class="row-fluid show-frid">                                        
+<!-- PORTFOLIO ITEM DESCRIPTION -->
+    <div class="span9">
+        <h2>{{ blog_post.title }}</h2>
+        {% block blog_post_detail_content %}
+        {% editable blog_post.content %}
+        {{ blog_post.content|richtext_filter|safe }}        
+        {% endeditable %}
+        {% endblock %}
+    </div>
+    <div class="span3">
+        <a class="btn btn-primary" href={{ SITE_ROOT }}"/appliances" ><i class="icon-circle-arrow-left"></i>  Back To Appliances</a>
+        <br>
+        <br>
+        {% block blog_post_detail_postedby %}
+        {% editable blog_post.publish_date %}
+            <ul class="item-details">               
+                <li>
+                    {% if blog_post.category_list %}
+                    <span class="title">{% trans "Category:" %}</span>
+                    {% for category in blog_post.category_list %}
+                    <span>{{ category }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </li>
+                <li class="tags">
+                    <p>
+                        {% keywords_for blog_post as tags %}
+                        {% if tags %}
+                        {% spaceless %}        
+                        <i class="icon-tags icon-large"></i>{% trans "Tags" %}:
+                        {% for tag in tags %}        
+                            <a href="{% url "blog_post_list_tag" tag.slug %}" class="tag badge badge-info">{{ tag }}</a>     
+                        {% endfor %}
+                        {% endspaceless %}    
+                        {% endif %}  
+                    </p>
+                </li>
+                <li class="share">
+                     <span class="title" style="float: left">Share:</span>
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style" style="padding-top: 2px;">
+                        <a class="addthis_button_preferred_1"></a>
+                        <a class="addthis_button_preferred_2"></a>
+                        <a class="addthis_button_preferred_3"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5049c90c240a9d63"></script>
+                <!-- AddThis Button END -->
+                </li>
+            </ul> 
+        {% endeditable %}
+        {% endblock %}  
+    </div>
+</div>
+
+<!-- {% block blog_post_detail_featured_image %}
+{% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+<p class="thumbnail-post"><img src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 600 0 %}"></p>
+{% endif %}
+{% endblock %} -->
+
+{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+{% include "generic/includes/disqus_counts.html" %}
+{% endif %}
+
+{% endblock %}

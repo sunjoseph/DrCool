@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<!-- <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title> -->
+<!--  SEO STUFF START HERE -->
+<meta name="robots" content="follow, index" />
+<!--  SEO STUFF END -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--  revolution slider plugin : begin -->        
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/rs-plugin/css/settings.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/rs-responsive.css" media="screen" />
+<!--  revolution slider plugin : end -->
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/isotope.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/color_scheme.css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="{{STATIC_URL}}assets/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/font-awesome-ie7.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/flexslider.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/bootstrap.css" />
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/custom.css" />
+<link rel="stylesheet/less" type="text/css" href="{{STATIC_URL}}assets/css/styles.less" />
+</head>
+<body>
+    <!-- THE LINE AT THE VERY TOP OF THE PAGE -->
+    <div class="top_line"></div>
+    <!-- HEADER AREA -->
+    <header>
+        <div class="container">
+            <div class="row-fluid">
+            <!-- HEADER: LOGO AREA -->
+                <div class="span4 logo">
+                    <a class="logo" href={{ SITE_ROOT }}"/">
+                        <img id="logo" alt="logo" title="Dr.Cool" src="{{ STATIC_URL }}assets/img/logo.jpg">
+                    </a>
+                </div>    
+                <div class="span4 offset4">
+                <!-- HEADER: PHONE NUMBER -->
+                    <p class="head_phone"><a href="tel:3406939071">(340) 693-9071</a></p>
+                </div>                            
+            </div>
+        </div>
+        <!-- HEADER: PRIMARY SITE NAVIGATION -->    
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        {% page_menu "pages/menus/dropdown.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+        <div class="container"> 
+            {% block maincontent %}{% endblock %}
+        </div>        
+        <div class="container">              
+            <hr>
+            <!-- MAIN CONTENT AREA: bizstrap CUSTOM - CLIENTS LOGO BAR -->
+            <div class="main-block clients">
+                <div class="title-wrapper">
+                    <h2>Our Appliance Brands</h2>
+                </div>
+                <div class="row show-grid">
+                    <div class="span12">
+                        <div class="image_carousel">
+                            <div class="brand-gallery clearfix">                            
+                                <a href="http://www.subzero-wolf.com/oven" class=""><img alt="" src="{{ STATIC_URL }}assets/img/logo-wolf.png" alt="Wolves" title="Wolves"/></a>
+                                <a href="http://www.thermador.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-thermador.png" alt="Thermador" title="Thermador"/></a>
+                                <a href="http://www.mitsubishielectric.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-mitsubishi.png" alt="Mitsubishi Electric" title="Mitsubishi Electric"/></a>
+                                <a href="http://www.subzero-wolf.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-subzero.png" alt="Subzero Wolf" title="Subzero Wolf" /></a>
+                                <a href="http://www.miele.com/international/enint/home.htm"><img alt="" src="{{ STATIC_URL }}assets/img/logo-miele.png" alt="Miele" title="Miele"/></a>
+                                <a href="http://www.electrolux.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-electrolux.png" alt="electrolux" title="Electrolux" /></a>
+                                <a href="http://www.bosch.com/worldsite_startpage/en/default.aspx"><img alt="" src="{{ STATIC_URL }}assets/img/logo-bosch.png" alt="Bosch" title="Bosch"/></a>
+                                <a href="http://www.brevilleusa.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-breville.png" alt="Breville" title="Breville"/></a>
+                                <a href="http://www.gaggenau.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-gaggenau.png" alt="Gaggenau" title="Gaggenau"/></a>
+                                <a href="http://www.liebherr.com/en-GB/default_lh.wfw"><img alt="" src="{{ STATIC_URL }}assets/img/logo-liebherr.jpg" alt="Liebherr" title="Liebherr"/></a>
+                                <a href="http://www.scotsman.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-scotsman.gif" alt="Scotsman" title="Scotsman"/></a>
+                                <a href="http://www.smeg.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-smeg.png" alt="Smeg" title="Smeg"/></a>
+                                <a href="http://www.uline.com/"><img alt="" src="{{ STATIC_URL }}assets/img/logo-uline.jpg" alt="Uline" title="Uline"/></a>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </div>        
+    <!-- FOOTER STARTS HERE -->
+    <footer id="footer">
+        <div class="footer-top"></div>
+        <div class="footer-wrapper">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                     <!-- FOOTER: LOGO -->
+                    <div class="span4">
+                        <h4 class="center-title">Contact Us</h4>
+                        <!-- FOOTER: ADDRESS -->
+                        <address class="address">
+                            <p><i class="icon-map-marker icon-large"></i>Suite 1, Palm Plaza (just over Jacob’s ladder), St. John, VI 00830</p> 
+                            <p><i class="icon-phone icon-large"></i>Phone: (340) 693-9071</p>
+                            <p><i class="icon-time icon-large"></i><span>Office hours: M-F: 8-5 with 24-hour Emergency on-call Service</span></p>
+                            <p><i class="icon-hand-right icon-large"></i>Showroom hours: M-F: 8-5; SAT: By Appointment; Closed Sunday</p>
+                            <p><i class="icon-user icon-large"></i> Email: <a href="mailto:sales@drcool.com" class="mail-us">sales@drcool.com</a></p>
+                        </address>
+                    </div>
+                    <!-- FOOTER: ABOUT US -->
+                    <div class="span4 footer-center">
+                        <h4 class="center-title">About Us</h4>
+                            <p>Dr. Cool is based on St. John and has been serving the US Virgin Islands since 1999. We service residential and commercial facilities and offer the best solution on the islands for your air conditioning needs. We have recently opened our showroom to the public, where you can visit and test some of the finest home and office cooling solutions, and premium kitchen appliances from around the world.</p>
+                            <p>Dr. Cool is a fully licensed, bonded, insured, and registered USVI corporation, and we are a wholly-owned subsidiary of U.S. Facilities, a facility management firm based in Philadelphia, PA </p>
+                            <p>For more information please <a href={{SITE_ROOT}}"/contact">contact us.</a></p>
+                    </div>
+                     <!-- FOOTER: NAVIGATION LINKS -->
+                    <div class="span4 footer-right">
+                        <h4 class="center-title">Navigate</h4>
+                        <ul class="footer-navigate">
+                            <li>
+                                <a href={{ SITE_ROOT }}"/">Home</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/about-us">about us</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/services">services</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/appliances">appliances</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/testimonials">testimonials</a>
+                            </li>
+                            <li>
+                                <a href={{ SITE_ROOT }}"/contact">contact us</a>
+                            </li>
+                        </ul>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row-fluid show-grid">
+                 <!-- FOOTER: COPYRIGHT TEXT -->
+                    <p class="left parent-company">Visit Dr. Cool's parent company at &nbsp;<a href="http://www.usfacilities.com">http://www.usfacilities.com</a></p>
+                    <p class="right"> <span  class="white" id="goTop">Dr.Cool</span> &copy; 2013 All Rights Reserved</p>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    <!-- Placed at the end of the document so the pages load faster -->    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.carouFredSel-6.2.1.js"></script>
+    <script type="text/javascript" src="https://lesscss.googlecode.com/files/less-1.3.0.min.js"></script>    
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/custom.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.isotope.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/jquery.fancybox.pack.js?v=2.1.0"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}assets/js/revolution.custom.js"></script>    
+</body>
+</html>

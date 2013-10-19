@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load i18n future mezzanine_tags %}
+
+{% block meta_title %}{% trans "Search Results" %}{% endblock %}
+{% block title %}{% trans "Search Results" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li>
+    <a href="{% url "home" %}">{% trans "Home" %}</a>
+    <span class="divider">/</span>
+</li>
+<li class="active">{% trans "Search Results" %}</li>
+{% endblock %}
+
+{% block main %}
+
+<p>
+{% if results.paginator.count == 0 %}
+{% blocktrans %}
+<div class="alert alert-success">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    <h4 style="font-weight: inherit;">No results were found in {{ search_type }} matching your query: <strong>{{ query }}</strong></h4>
+</div>
+{% endblocktrans %}
+{% else %}
+
+{% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
+<div class="alert alert-success">
+	<button data-dismiss="alert" class="close" type="button">×</button>
+	<h4 style="font-weight: inherit;">Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: <strong>{{ query }}</strong></h4>
+</div>
+{% endblocktrans %}
+{% endif %}
+</p>
+
+<ul id="search-results">	
+    {% for result in results.object_list %}
+    <li>
+        <div class="headline">
+        	<h2><a href="{{ result.get_absolute_url }}">{{ result }}</a></h2>
+        </div>
+        <p>{{ result.description|truncatewords_html:20|safe }} <a style="text-transform:uppercase;" href="{{ result.get_absolute_url }}">{% trans "read more" %}</a></p>       
+    {% endfor %}
+    </li>
+</ul>
+<div style="clear:both;float:none"></div>
+{% pagination_for results %}
+
+{% endblock %}
